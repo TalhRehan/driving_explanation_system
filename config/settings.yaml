@@ -1,0 +1,70 @@
+carla:
+  host: "localhost"
+  port: 2000
+  timeout: 10.0
+  sample_rate_hz: 10
+  episode_duration_sec: 120
+  towns:
+    - "Town01"
+    - "Town03"
+    - "Town05"
+  weather_presets:
+    - "ClearNoon"
+    - "CloudyNoon"
+    - "WetNoon"
+    - "HardRainNoon"
+    - "ClearSunset"
+
+data:
+  episodes_dir: "data/episodes"
+  images_subdir: "images"
+  log_format: "jsonl"
+  top_k_boxes: 5
+
+shield:
+  tau_ttc: 3.0          # seconds — block if TTC below this
+  tau_a: 3.5            # m/s^2  — block on hard braking/acceleration
+  tau_omega: 0.3        # rad/s  — block on sharp steering
+  ttc_inf: 999.0        # value used when no forward actor present
+  eps: 0.000001
+
+rl:
+  gamma: 0.99
+  lr: 3e-4
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  total_timesteps: 500000
+  policy: "MlpPolicy"
+
+reward:
+  alpha: 0.3            # workload cost weight
+  gamma_freq: 0.2       # frequency penalty weight
+  eta: 0.1              # staleness penalty weight
+  rho: 0.05             # staleness decay rate
+  budget_per_60s: 4     # max explanations per 60 seconds
+
+features:
+  rare_event_accel_thresh: 3.0    # m/s^2
+  rare_event_omega_thresh: 0.25   # rad/s
+
+llava:
+  model_name: "llava-hf/llava-1.5-7b-hf"
+  max_new_tokens: 256
+  default_prompt: "Explain why the vehicle chose action {action} given the scene."
+
+inference:
+  image_extensions:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+  output_dir: "outputs/explanations"
+  # When running on user-provided images (no CARLA), these fallback values
+  # are used for kinematic fields not available from image alone.
+  # Users can override via a sidecar JSON (see README).
+  fallback_speed: 10.0
+  fallback_accel: 0.0
+  fallback_omega: 0.0
+  fallback_ttc: 999.0
+  fallback_crit_zone: 0
+  fallback_action: "cruise"

@@ -1,0 +1,26 @@
+[
+  {
+    "_comment": "One entry per image, in the same order as the image filenames (alphabetical). All fields are optional — omit any you don't know and they will be synthesised automatically.",
+    "speed": 12.5,
+    "a_t": 0.0,
+    "omega_t": 0.0,
+    "crit_zone": 0,
+    "d_t": 35.0,
+    "dv_t": 1.2,
+    "action": "cruise"
+  },
+  {
+    "speed": 8.0,
+    "a_t": -3.5,
+    "omega_t": 0.0,
+    "crit_zone": 1,
+    "d_t": 12.0,
+    "dv_t": 4.0,
+    "action": "brake"
+  },
+  {
+    "speed": 5.0,
+    "crit_zone": 1,
+    "action": "yield"
+  }
+]
