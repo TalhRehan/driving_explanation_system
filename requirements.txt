@@ -1,0 +1,23 @@
+# Core
+numpy>=1.24
+pyyaml>=6.0
+
+# RL
+stable-baselines3>=2.2
+gymnasium>=0.29
+
+# Vision / detection
+torch>=2.1
+torchvision>=0.16
+ultralytics>=8.0        # YOLOv8 (used for Option 2 evidence extraction)
+
+# LLaVA inference
+transformers>=4.40
+accelerate>=0.28
+Pillow>=10.0
+
+# Data
+jsonlines>=3.1
+
+# CARLA Python API is installed separately from the CARLA release package.
+# See README for instructions.
